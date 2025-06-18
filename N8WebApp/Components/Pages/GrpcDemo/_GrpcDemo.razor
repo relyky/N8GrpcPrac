@@ -1,0 +1,41 @@
+﻿@using Grpc.Net.Client
+@using N8GrpcPrac
+@page "/grpcdemo"
+
+<h3>gRPC Basic Demo</h3>
+
+<button class="btn btn-primary" @onclick="HandleHello">哈囉</button>
+
+
+<InputText @bind-Value=gRPCHostAddress class="form-control mt-2" placeholder="gRPC 服務端的地址" />
+
+<p role="status">gRPCHostAddress: @gRPCHostAddress</p>
+<p role="status">Reply: @helloReply?.Message</p>
+<p role="status">Message: @message</p>
+
+@code {
+  HelloReply? helloReply = null;
+  string? message = null;
+  string gRPCHostAddress = "https://localhost:32777";
+
+  async Task HandleHello()
+  {
+    try
+    {
+      message = null;
+
+      //## 全手動叫用 Grpc Cllient。
+      //const string gRPCHostAddress = "https://localhost:32777"; // gRPC 服務端的地址。
+      using var channel = GrpcChannel.ForAddress(gRPCHostAddress);
+      var client = new Greeter.GreeterClient(channel);
+      helloReply = await client.SayHelloAsync(new HelloRequest { Name = $"郝聰明 at {DateTime.Now:HH:mm:ss}" });
+      
+      message = "我出運了";
+    }
+    catch(Exception ex)
+    {
+      message = "出現例外！" + ex.Message;
+    }
+  }
+
+}
