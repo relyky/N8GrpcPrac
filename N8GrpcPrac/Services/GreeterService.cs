@@ -15,7 +15,7 @@ namespace N8GrpcPrac.Services
         {
             return Task.FromResult(new HelloReply
             {
-                Message = "Hello " + request.Name
+                Message = "«¢Åo " + request.Name
             });
         }
     }
