@@ -13,4 +13,33 @@ Failed to dial target host "localhost:32781": context deadline exceeded
 > grpcurl -insecure localhost:32781 list
 greet.Greeter
 grpc.reflection.v1alpha.ServerReflection
+
+> docker network inspect bridge
+
+```
+http://172.17.0.2:8080
+http://n8grpcprac:8080
+
+# Next.js 呼叫 gRPC service
+`@grpc/proto-loader`
+`@grpc/grpc-js`
+`protobuf-ts`
+`protoc greet.proto --ts_proto_out=./generated`
+
+```TS,server action
+'use server';
+
+import { GreeterClient } from './generated/greet.client';
+import { HelloRequest } from './generated/greet';
+import { createChannel } from '@protobuf-ts/runtime-rpc';
+
+const client = new GreeterClient(createChannel('localhost:50051'));
+
+https://github.com/timostamm/protobuf-ts/?tab=readme-ov-file
+
+export async function sayHello(name: string): Promise<string> {
+  const request: HelloRequest = { name };
+  const response = await client.sayHello(request);
+  return response.message;
+}
 ```

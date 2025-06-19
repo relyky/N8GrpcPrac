@@ -16,7 +16,8 @@
 @code {
   HelloReply? helloReply = null;
   string? message = null;
-  string gRPCHostAddress = "https://localhost:32777";
+  //string gRPCHostAddress = "https://localhost:32777";
+  string gRPCHostAddress = "http://172.17.0.2:8080";
 
   async Task HandleHello()
   {
@@ -28,7 +29,7 @@
       //const string gRPCHostAddress = "https://localhost:32777"; // gRPC 服務端的地址。
       using var channel = GrpcChannel.ForAddress(gRPCHostAddress);
       var client = new Greeter.GreeterClient(channel);
-      helloReply = await client.SayHelloAsync(new HelloRequest { Name = $"郝聰明 at {DateTime.Now:HH:mm:ss}" });
+      helloReply = await client.SayHelloAsync(new HelloRequest { Name = $"郝聰明" });
       
       message = "我出運了";
     }
