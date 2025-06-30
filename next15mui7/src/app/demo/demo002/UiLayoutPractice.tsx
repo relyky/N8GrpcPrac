@@ -2,6 +2,14 @@ import { Box, Paper, Slider, Stack, styled, Typography } from "@mui/material";
 import SimpleRadioField from "./widgets/SimpleRadioField";
 import { FC, useMemo, useState } from "react";
 import { Grid } from '@mui/system';
+// types
+import type { StackProps } from '@mui/material/Stack';
+
+type DirectionType = StackProps['direction']
+type FlexWrapType = StackProps['flexWrap']
+type JustifyContentType = StackProps['justifyContent']
+type AlignContentType = StackProps['alignContent']
+type AlignItemsType = StackProps['alignItems']
 
 export default function UiLayoutPractice() {
   return (
@@ -32,12 +40,11 @@ const Item = styled(Paper)(({ theme }) => ({
 //-----------------------------------------------------------------------------
 
 function StackLab() {
-  //const [direction, setDirection] = useState<ResponsiveStyleValue<'row' | 'row-reverse' | 'column' | 'column-reverse'>>('column');
-  const [direction, setDirection] = useState<string>('column');
-  const [flexWrap, setFlexWrap] = useState<string>('nowrap');
-  const [justifyContent, setJustifyContent] = useState<string>('flex-start');
-  const [alignContent, setAlignContent] = useState<string>('flex-start');
-  const [alignItems, setAlignItems] = useState<string>('flex-start');
+  const [direction, setDirection] = useState<DirectionType>('column');
+  const [flexWrap, setFlexWrap] = useState<FlexWrapType>('nowrap');
+  const [justifyContent, setJustifyContent] = useState<JustifyContentType>('flex-start');
+  const [alignContent, setAlignContent] = useState<AlignContentType>('flex-start');
+  const [alignItems, setAlignItems] = useState<AlignItemsType>('flex-start');
   const [spacing, setSpacing] = useState<string>('0')
   const [gap, setGap] = useState<string>('0')
   const [count, setCount] = useState<number>(3)
@@ -50,7 +57,7 @@ function StackLab() {
   return (
     <div>
       <Typography variant="h6">Stack Lab</Typography>
-      <Box typography='body1'>其 CSS display 皆是 'flex'。</Box>
+      <Box typography='body1'>其 CSS display 皆是 flex。</Box>
       <Grid container>
         <Grid size={{ xs: 12 }}>
           <CountSlider count={count} onChange={setCount} />
@@ -85,11 +92,11 @@ function StackLab() {
         </Grid>
       </Grid>
 
-      <Stack direction={direction as any}
-        flexWrap={flexWrap as any}
-        justifyContent={justifyContent as any}
+      <Stack direction={direction}
+        flexWrap={flexWrap}
+        justifyContent={justifyContent}
         alignContent={alignContent}
-        alignItems={alignItems as any}
+        alignItems={alignItems}
         spacing={Number(spacing)}
         gap={Number(gap)}
         sx={{
@@ -98,24 +105,15 @@ function StackLab() {
           minHeight: 400,
         }}>
 
-        {countList.map((v, i) => (
+        {countList.map((v) => (
           <Item key={v}>
             <Box sx={{ py: `${v * 4}px`, textAlign: 'center' }}>
               {`Item ${v}`}
             </Box>
           </Item>
         ))}
-
-        {/* {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((v, i) => (
-          <Item key={v}>
-            <Box sx={{ py: `${v * 4}px`, textAlign: 'center' }}>
-              {`Item ${v}`}
-            </Box>
-          </Item>
-        ))} */}
       </Stack>
     </div>
-
   )
 }
 

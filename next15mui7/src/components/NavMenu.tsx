@@ -1,11 +1,11 @@
 import { FC, ReactNode, useState } from "react";
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Typography, Collapse } from "@mui/material";
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Divider, Collapse } from "@mui/material";
 //import MuiLink from '@mui/material/Link';
 import NextLink from 'next/link';
 // icons
 import InfoIcon from '@mui/icons-material/InfoOutline';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+//import InboxIcon from '@mui/icons-material/MoveToInbox';
+//import MailIcon from '@mui/icons-material/Mail';
 import LoginIcon from '@mui/icons-material/Login'
 import LogoutIcon from '@mui/icons-material/Logout'
 import HomeIcon from '@mui/icons-material/Home'
@@ -69,19 +69,19 @@ export default function NavMenu() {
       </Divider>
       <List component="nav">
         <ListItemButton component={NextLink} href="/">
-          <ListItemIcon children={<HomeIcon color='primary' />} />
+          <ListItemIcon><HomeIcon color='primary' /></ListItemIcon>
           <ListItemText primary='首頁' />
         </ListItemButton>
         <ListItemButton component={NextLink} href="/login">
-          <ListItemIcon children={<LoginIcon color='primary' />} />
+          <ListItemIcon><LoginIcon color='primary' /></ListItemIcon>
           <ListItemText primary='登入' />
         </ListItemButton>
         <ListItemButton onClick={async () => await logoutAsync()}>
-          <ListItemIcon children={<LogoutIcon color='primary' />} />
+          <ListItemIcon><LogoutIcon color='primary' /></ListItemIcon>
           <ListItemText primary='登出' />
         </ListItemButton>
         <ListItemButton component={NextLink} href="/about">
-          <ListItemIcon children={<InfoIcon color='primary' />} />
+          <ListItemIcon><InfoIcon color='primary' /></ListItemIcon>
           <ListItemText primary='關於我們' />
         </ListItemButton>
       </List>
@@ -96,7 +96,7 @@ const ListMenuGroup: FC<{ label: string, children: ReactNode }> = (props) => {
   return (
     <>
       <ListItemButton onClick={() => setOpen(f => !f)}>
-        <ListItemIcon children={<MenuGroupIcon color='primary' />} />
+        <ListItemIcon><MenuGroupIcon color='primary' /></ListItemIcon>
         <ListItemText primary={props.label} />
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>

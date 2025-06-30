@@ -20,8 +20,8 @@ export default function MenuAppBar() {
     setAnchorEl(null)
   };
 
-  const handleChange = (value: string) => {
-    setMode(value as any)
+  const handleChange = (value: 'light' | 'dark' | 'system') => {
+    setMode(value)
     setAnchorEl(null)
   }
 

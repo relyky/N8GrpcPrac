@@ -27,7 +27,7 @@ interface Props {
 export default function ClippedDrawer(props: Props) {
   const theme = useTheme();
   const matchUp = useMediaQuery(theme.breakpoints.up('sm'));
-  const [f_openDrawer, toggleDrawer] = useReducer((f: boolean, _: void) => !f, true);
+  const [f_openDrawer, toggleDrawer] = useReducer((f: boolean) => !f, true);
 
   return (
     <Box sx={{ display: 'flex' }}>
