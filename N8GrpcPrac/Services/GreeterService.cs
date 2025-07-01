@@ -1,3 +1,4 @@
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using N8GrpcPrac;
 
@@ -16,6 +17,18 @@ namespace N8GrpcPrac.Services
       return Task.FromResult(new HelloReply
       {
         Message = $"哈囉 {request.Name} at {DateTime.Now:HH:mm:ss}。"
+      });
+    }
+
+    public override Task<WeatherForecast> GetWeatherForecast(Empty request, ServerCallContext context)
+    {
+      return Task.FromResult(new WeatherForecast
+      {
+        City = "新北市",
+        Date = Timestamp.FromDateTime(DateTime.UtcNow),
+        TemperatureC = 25,
+        TemperatureF = 32 + (int)(25 / 0.5556),
+        Summary = "晴天"
       });
     }
   }

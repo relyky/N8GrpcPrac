@@ -1,10 +1,14 @@
 using N8WebApp.Components;
+using N8WebApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+// ¦Û­qªA°È
+builder.Services.AddScoped<GrpcDemoBiz>();
 
 var app = builder.Build();
 

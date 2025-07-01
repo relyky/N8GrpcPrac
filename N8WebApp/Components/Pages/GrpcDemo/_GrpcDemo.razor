@@ -1,42 +1,82 @@
 ﻿@using Grpc.Net.Client
 @using N8GrpcPrac
 @page "/grpcdemo"
+@inject GrpcDemoBiz bizSvc
 
 <h3>gRPC Basic Demo</h3>
 
+<InputText @bind-Value=name class="form-control mt-2" placeholder="名稱" />
 <button class="btn btn-primary" @onclick="HandleHello">哈囉</button>
+<button class="btn btn-primary" @onclick="HandleGetWeatherForecast">取天氣</button>
 
+<p role="status">gRPCHostAddress: @bizSvc.gRPCHostAddress</p>
+<p role="status">Hello → @helloReply?.Message</p>
+<p role="status">Weather →</p>
+<dl>
+  <dt>City</dt>
+  <dd>@weatherForecast?.City</dd>
+  <dt>Date</dt>
+  <dd>@weatherForecast?.Date</dd>
+  <dt>TemperatureC</dt>
+  <dd>@weatherForecast?.TemperatureC</dd>
+  <dt>TemperatureF</dt>
+  <dd>@weatherForecast?.TemperatureF</dd>
+  <dt>Summary</dt>
+  <dd>@weatherForecast?.Summary</dd>
+</dl>
 
-<InputText @bind-Value=gRPCHostAddress class="form-control mt-2" placeholder="gRPC 服務端的地址" />
-
-<p role="status">gRPCHostAddress: @gRPCHostAddress</p>
-<p role="status">Reply: @helloReply?.Message</p>
-<p role="status">Message: @message</p>
+@if (!String.IsNullOrWhiteSpace(errMsg))
+{
+  <div class="alert alert-danger" role="alert">
+    @errMsg
+  </div>
+}
 
 @code {
   HelloReply? helloReply = null;
-  string? message = null;
-  //string gRPCHostAddress = "https://localhost:32777";
-  string gRPCHostAddress = "http://172.17.0.2:8080";
+  WeatherForecast? weatherForecast = null;
+  string? errMsg = null;
+  string name = "甄美麗";
+  bool f_loading = false;
 
   async Task HandleHello()
   {
     try
     {
-      message = null;
+      errMsg = null;
+      f_loading = true;
 
-      //## 全手動叫用 Grpc Cllient。
-      //const string gRPCHostAddress = "https://localhost:32777"; // gRPC 服務端的地址。
-      using var channel = GrpcChannel.ForAddress(gRPCHostAddress);
-      var client = new Greeter.GreeterClient(channel);
-      helloReply = await client.SayHelloAsync(new HelloRequest { Name = $"郝聰明" });
-      
-      message = "我出運了";
+      var request = new HelloRequest { Name = name };
+      helloReply = await bizSvc.SayHelloAsync(request);
     }
     catch(Exception ex)
     {
-      message = "出現例外！" + ex.Message;
+      errMsg = "出現例外！" + ex.Message;
+    }
+    finally
+    {
+      f_loading = false;
     }
   }
 
+  async Task HandleGetWeatherForecast()
+  {
+    try
+    {
+      errMsg = null;
+      f_loading = true;
+
+      weatherForecast = await bizSvc.GetWeatherForecastAsync();
+    }
+    catch (Exception ex)
+    {
+      errMsg = "出現例外！" + ex.Message;
+    }
+    finally
+    {
+      f_loading = false;
+    }
+  }
+
+  
 }
