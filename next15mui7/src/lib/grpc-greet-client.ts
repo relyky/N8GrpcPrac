@@ -3,7 +3,8 @@
  * for greet.proto
  */
 
-import { HelloReply, HelloRequest } from "@/generated/greet";
+import { Empty } from "@/generated/google/protobuf/empty";
+import { HelloReply, HelloRequest, WeatherForecast } from "@/generated/greet";
 import { GreeterClient } from "@/generated/greet.client";
 import { ChannelCredentials } from "@grpc/grpc-js";
 import { GrpcTransport } from "@protobuf-ts/grpc-transport";
@@ -21,20 +22,18 @@ const transport = new GrpcTransport({
 console.info('grpc-greet-client', process.env.GREETER_HOST_INSECURE, process.env.GREETER_HOST)
 
 // 創建客戶端實例
-const client = new GreeterClient(transport);
-const clientInsecure = new GreeterClient(transportInsecure); // 用於開發環境測試
+//const client = new GreeterClient(transport);
+const client = new GreeterClient(transportInsecure); // 無SSL, 用於開發環境測試
 
 export async function sayHelloAsync(request: HelloRequest): Promise<HelloReply> {
   const call = client.sayHello(request);
-  const response = await call.response;
-  return response;
+  const reply = await call.response;
+  return reply;
 }
 
-/**
- * 用於開發環境測試
- */
-export async function sayHelloInsecureAsync(request: HelloRequest): Promise<HelloReply> {
-  const call = clientInsecure.sayHello(request);
-  const response = await call.response;
-  return response;
+export async function getWeatherForecastAsync(): Promise<WeatherForecast> {
+  const call = client.getWeatherForecast(Empty);
+  const reply = await call.response;
+  console.log('getWeatherForecastAsync', reply);
+  return reply;
 }

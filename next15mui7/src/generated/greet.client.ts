@@ -4,6 +4,8 @@
 import type { RpcTransport } from "@protobuf-ts/runtime-rpc";
 import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { Greeter } from "./greet";
+import type { WeatherForecast } from "./greet";
+import type { Empty } from "./google/protobuf/empty";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { HelloReply } from "./greet";
 import type { HelloRequest } from "./greet";
@@ -21,6 +23,10 @@ export interface IGreeterClient {
      * @generated from protobuf rpc: SayHello
      */
     sayHello(input: HelloRequest, options?: RpcOptions): UnaryCall<HelloRequest, HelloReply>;
+    /**
+     * @generated from protobuf rpc: GetWeatherForecast
+     */
+    getWeatherForecast(input: Empty, options?: RpcOptions): UnaryCall<Empty, WeatherForecast>;
 }
 /**
  * The greeting service definition.
@@ -41,5 +47,12 @@ export class GreeterClient implements IGreeterClient, ServiceInfo {
     sayHello(input: HelloRequest, options?: RpcOptions): UnaryCall<HelloRequest, HelloReply> {
         const method = this.methods[0], opt = this._transport.mergeOptions(options);
         return stackIntercept<HelloRequest, HelloReply>("unary", this._transport, method, opt, input);
+    }
+    /**
+     * @generated from protobuf rpc: GetWeatherForecast
+     */
+    getWeatherForecast(input: Empty, options?: RpcOptions): UnaryCall<Empty, WeatherForecast> {
+        const method = this.methods[1], opt = this._transport.mergeOptions(options);
+        return stackIntercept<Empty, WeatherForecast>("unary", this._transport, method, opt, input);
     }
 }

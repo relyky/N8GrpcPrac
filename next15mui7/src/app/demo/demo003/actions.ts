@@ -3,11 +3,10 @@
 import { HelloRequest } from "@/generated/greet";
 import * as client from "@/lib/grpc-greet-client";
 
-
-export async function sayHello() {
+export async function sayHello(name: string) {
   try {
     const request: HelloRequest = {
-      name: 'Smart'
+      name: name
     };
 
     const reply = await client.sayHelloAsync(request);
@@ -18,16 +17,13 @@ export async function sayHello() {
   }
 }
 
-export async function sayHelloInsecure() {
-  try {
-    const request: HelloRequest = {
-      name: 'Smart (insecure)'
-    };
 
-    const reply = await client.sayHelloInsecureAsync(request);
+export async function getWeatherForecast() {
+  try {
+    const reply = await client.getWeatherForecastAsync();
     return reply;
   } catch (error) {
-    console.error('sayHello error →', error);
+    console.error('getWeatherForecast error →', error);
     throw error;
   }
 }
