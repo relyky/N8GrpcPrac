@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "proto:generate": "protoc --ts_out generated --proto_path protos protos/*.proto"
+    "proto:generate": "protoc --ts_out src/generated/ --proto_path protos protos/*.proto"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
