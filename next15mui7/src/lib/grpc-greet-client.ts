@@ -34,6 +34,5 @@ export async function sayHelloAsync(request: HelloRequest): Promise<HelloReply> 
 export async function getWeatherForecastAsync(): Promise<WeatherForecast> {
   const call = client.getWeatherForecast(Empty);
   const reply = await call.response;
-  console.log('getWeatherForecastAsync', reply);
   return reply;
 }
