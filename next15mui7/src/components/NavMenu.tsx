@@ -35,7 +35,7 @@ export default function NavMenu() {
         </ListMenuGroup>
 
         <ListMenuGroup label='展示功能２'>
-          <ListMenuItem label='開戶申請' href='/demo2/demo201' />
+          <ListMenuItem label='開戶申請展示' href='/demo2/demo201' />
           <ListMenuItem label='Counter 1' href='/counter' />
           <ListMenuItem label='Fetch data 1' href='/fetch-data' />
           <ListMenuItem label='Counter 2' href='/counter' />
