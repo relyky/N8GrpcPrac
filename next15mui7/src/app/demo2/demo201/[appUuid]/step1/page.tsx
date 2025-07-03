@@ -16,7 +16,7 @@ export default async function Demo201Step1Page(props: {
         開戶申請 1/4
       </Typography>
 
-      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 4 }, borderRadius: 2 }}>
+      <Paper sx={{ p: { xs: 2, sm: 4 } }}>
         <Typography variant="h6" gutterBottom>
           基本資料
         </Typography>
