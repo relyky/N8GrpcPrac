@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import NextLink from 'next/link';
+import { Stack } from '@mui/material';
 //import ProTip from '@/components/ProTip';
 //import Copyright from '@/components/Copyright';
 
@@ -21,9 +22,19 @@ export default function Home() {
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
           Material UI - Next.js App Router example in TypeScript
         </Typography>
-        <Link href="/demo/demo002" color="secondary" component={NextLink}>
-          Go to demo002
-        </Link>
+
+        <Stack spacing={3}>
+          <Link href="/demo2/demo201" color="primary" component={NextLink}
+            sx={{ fontSize: '1.5em' }}>
+            開戶申請展示
+          </Link>
+
+          <Link href="/demo/demo002" color="primary" component={NextLink}
+            sx={{ fontSize: '1.5em' }}>
+            Go to demo002
+          </Link>
+        </Stack>
+
       </Box>
 
       <Typography sx={{ marginBottom: 2 }}>
@@ -40,7 +51,7 @@ export default function Home() {
         consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
         sapien faucibus et molestie ac.
       </Typography>
-      
+
       <Typography sx={{ marginBottom: 2 }}>
         Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
         eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim

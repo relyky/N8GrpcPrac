@@ -1,10 +1,10 @@
 "use client"
 import { useState } from "react";
-import { Box, Button, ButtonGroup, Container, Link, Paper, Stack, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Container, IconButton, Link, Paper, Stack, Toolbar, Typography } from "@mui/material";
 import NextLink from "next/link";
 import Image from 'next/image'
+import PhotographIconButton from "@/components/PhotographIconButton";
 import * as act from '../../actions'
-import TakePictureWidget from "./TakePictureWidget";
 
 export default function AppForm(props: {
   appUuid: string
@@ -21,13 +21,15 @@ export default function AppForm(props: {
         上傳附件。
       </Box>
 
-      <Typography variant="h6" gutterBottom>
-        身份證正面
-      </Typography>
+      <Toolbar>
+        <Typography variant="h6">
+          身份證正面
+        </Typography>
+        <PhotographIconButton onTakePhoto={handleTakePhoto} />
+      </Toolbar>
 
-      <TakePictureWidget onTakePicture={handleTakePicture} />
 
-      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 4 } }}>
+      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
             src={imgSrc as string}
@@ -47,7 +49,7 @@ export default function AppForm(props: {
       <Typography variant="h6" gutterBottom>
         身份證背面
       </Typography>
-      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 4 } }}>
+      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
             src="/images/ROC_mibunsho_ura.jpg"
@@ -67,7 +69,7 @@ export default function AppForm(props: {
       <Typography variant="h6" gutterBottom>
         健保卡或駕照
       </Typography>
-      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 4 } }}>
+      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
             src="/images/ROC_healthcard.jpg"
@@ -87,7 +89,7 @@ export default function AppForm(props: {
       <Typography variant="h6" gutterBottom>
         存摺
       </Typography>
-      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 4 } }}>
+      <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
             src="/images/passbook_cover.jpg"
@@ -123,8 +125,8 @@ export default function AppForm(props: {
     </Container>
   )
 
-  function handleTakePicture(imageUrl: string) {
-    console.log('handleTakePicture', imageUrl)
-    setImgSrc(imageUrl)
+  function handleTakePhoto(imageUri: string) {
+    console.log('handleTakePicture', imageUri)
+    setImgSrc(imageUri)
   }
 }

@@ -11,7 +11,7 @@ export default async function Demo201Page() {
 
       <form action={act.handleGoApply} >
         
-        <Stack alignItems='center' spacing={6} >
+        <Stack alignItems='center' spacing={3} >
           <Button type='submit' size='large' color="primary">
             開戶申請 Go
           </Button>
