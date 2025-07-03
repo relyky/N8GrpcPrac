@@ -14,8 +14,15 @@ export async function handleGoApply() {
   redirect(`/demo2/demo201/${appUuid}/step1`)
 }
 
-export async function handleCommitStep1(info: FormData) {
-  const appUuid = info.get('appUuid')
+export async function handleCommitStep1(form: FormData) {
+  const appUuid = form.get('appUuid')
+  const idNumber = form.get('idNumber')
+  const name = form.get('name')
+  const phoneNumber = form.get('phoneNumber')
+  const emailAddress = form.get('emailAddress')
+
+  const info = { idNumber, name, phoneNumber, emailAddress }
+  console.log('ON:handleCommitStep2', info)
 
   //...在資料庫完成步驟一相關工作。
 
