@@ -25,7 +25,7 @@ export default async function Demo201Step1Page(props: {
         </Box>
 
         <form action={handleCommitStep1}>
-          <Stack spacing={3}>
+          <Stack alignItems='center' spacing={3} >
 
             <input type='hidden' name='appUuid' value={appUuid} />
 
@@ -66,10 +66,15 @@ export default async function Demo201Step1Page(props: {
               下一步
             </Button>
 
-            <Link href='/' sx={{ textAlign: 'center' }}>
+            <Button href='../' LinkComponent={NextLink} type='button' fullWidth>
+              取消
+            </Button>
+
+            {/* 
+            <Link component={NextLink} href="/" color="secondary" textAlign='center'>
               回首頁
             </Link>
-
+            */}
           </Stack>
         </form>
       </Paper>
