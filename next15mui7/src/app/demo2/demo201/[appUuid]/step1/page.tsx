@@ -55,7 +55,7 @@ export default async function Demo201Step1Page(props: {
             />
             <TextField
               name="emailAddress"
-              label="電子郵件"
+              label="電子信箱"
               variant="outlined"
               defaultValue={'smart@notmail.server'}
               required
