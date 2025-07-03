@@ -3,9 +3,10 @@ import NextLink from "next/link";
 import * as act from '../../actions'
 
 export default async function Demo201Step3Page(props: {
-  params: { appUuid: string }
+  params: Promise<{ appUuid: string }>
 }) {
-  const { appUuid } = props.params
+  const { appUuid } = await props.params
+  await new Promise((resolve) => setTimeout(resolve, 800)) // 測試 loading 是否有效。正式版請移除。
 
   return (
     <Container>
@@ -30,7 +31,7 @@ export default async function Demo201Step3Page(props: {
       <label>for debug</label>
       <pre>
         {JSON.stringify({
-          appUuid: props.params.appUuid
+          appUuid
         }, null, 2)}
       </pre>
     </Container>
