@@ -1,6 +1,7 @@
 import { Box, Button, ButtonGroup, Container, Link, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import NextLink from "next/link";
 import * as act from '../../actions'
+import ApplySteper from "../../applyStepper";
 
 export default async function Demo201Step4Page(props: {
   params: Promise<{ appUuid: string }>
@@ -10,7 +11,8 @@ export default async function Demo201Step4Page(props: {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant='h4' gutterBottom>開戶申請 4/4</Typography>
+      <ApplySteper activeStep={3} />
+      {/* <Typography variant='h4' gutterBottom>開戶申請 4/4</Typography> */}
       <Box typography="body2" color="text.secondary">
         申請編號: {appUuid}<br />
         確認申請文件並送出。

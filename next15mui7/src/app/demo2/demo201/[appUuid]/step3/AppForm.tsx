@@ -5,6 +5,7 @@ import NextLink from "next/link";
 import Image from 'next/image'
 import PhotographIconButton from "@/components/PhotographIconButton";
 import * as act from '../../actions'
+import ApplySteper from "../../applyStepper";
 
 export default function AppForm(props: {
   appUuid: string
@@ -18,7 +19,8 @@ export default function AppForm(props: {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant='h4' gutterBottom>開戶申請 3/4</Typography>
+      <ApplySteper activeStep={2} />
+      {/* <Typography variant='h4' gutterBottom>開戶申請 3/4</Typography> */}
       <Box typography="body2" color="text.secondary">
         申請編號: {appUuid}<br />
         上傳附件。

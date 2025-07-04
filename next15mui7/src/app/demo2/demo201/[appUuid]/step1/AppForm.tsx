@@ -3,6 +3,7 @@ import { useActionState, useState } from "react";
 import { Button, Container, Stack, Typography, Box, Paper, TextField } from "@mui/material";
 import NextLink from "next/link";
 import { handleCommitStep1 } from '../../actions';
+import ApplySteper from "../../applyStepper";
 
 const initialState: IFormState<Demo201Values> = {
   success: false,
@@ -25,9 +26,11 @@ export default function AppForm(props: {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant='h4' gutterBottom sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
+      <ApplySteper activeStep={0} />
+
+      {/* <Typography variant='h4' gutterBottom sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
         開戶申請 1/4
-      </Typography>
+      </Typography> */}
 
       <Paper sx={{ p: { xs: 2, sm: 4 } }}>
         <Typography variant="h6" gutterBottom>
