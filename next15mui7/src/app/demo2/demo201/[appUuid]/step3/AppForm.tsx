@@ -1,6 +1,6 @@
 "use client"
 import { useState } from "react";
-import { Box, Button, ButtonGroup, Container, IconButton, Link, Paper, Stack, Toolbar, Typography } from "@mui/material";
+import { Box, Button, ButtonGroup, Container, Paper, Stack, Toolbar, Typography } from "@mui/material";
 import NextLink from "next/link";
 import Image from 'next/image'
 import PhotographIconButton from "@/components/PhotographIconButton";
@@ -11,7 +11,10 @@ export default function AppForm(props: {
 }) {
   const { appUuid } = props
 
-  const [imgSrc, setImgSrc] = useState<string | undefined>('/images/ROC_mibunsho.jpg')
+  const [photo1Src, setPhoto1Src] = useState<string>('/images/ROC_mibunsho.jpg') // 身份證正面
+  const [photo2Src, setPhoto2Src] = useState<string>('/images/ROC_mibunsho_ura.jpg') // 身份證反面
+  const [photo3Src, setPhoto3Src] = useState<string>('/images/ROC_healthcard.jpg') // 健保卡 or 駕照
+  const [photo4Src, setPhoto4Src] = useState<string>('/images/passbook_cover.jpg') // 存摺封面
 
   return (
     <Container maxWidth="sm">
@@ -25,14 +28,12 @@ export default function AppForm(props: {
         <Typography variant="h6">
           身份證正面
         </Typography>
-        <PhotographIconButton onTakePhoto={handleTakePhoto} />
+        <PhotographIconButton onTakePhoto={handleTakePhoto1} />
       </Toolbar>
-
-
       <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
-            src={imgSrc as string}
+            src={photo1Src}
             alt="ROC_mibunsho"
             width={451}
             height={284}
@@ -46,13 +47,16 @@ export default function AppForm(props: {
         </Box>
       </Paper>
 
-      <Typography variant="h6" gutterBottom>
-        身份證背面
-      </Typography>
+      <Toolbar>
+        <Typography variant="h6">
+          身份證背面
+        </Typography>
+        <PhotographIconButton onTakePhoto={handleTakePhoto2} />
+      </Toolbar>
       <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
-            src="/images/ROC_mibunsho_ura.jpg"
+            src={photo2Src}
             alt="ROC_mibunsho_ura"
             width={220}
             height={141}
@@ -66,13 +70,16 @@ export default function AppForm(props: {
         </Box>
       </Paper>
 
-      <Typography variant="h6" gutterBottom>
-        健保卡或駕照
-      </Typography>
+      <Toolbar>
+        <Typography variant="h6">
+          健保卡或駕照
+        </Typography>
+        <PhotographIconButton onTakePhoto={handleTakePhoto3} />
+      </Toolbar>
       <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
-            src="/images/ROC_healthcard.jpg"
+            src={photo3Src}
             alt="ROC_healthcard"
             width={1600}
             height={990}
@@ -86,13 +93,16 @@ export default function AppForm(props: {
         </Box>
       </Paper>
 
-      <Typography variant="h6" gutterBottom>
-        存摺
-      </Typography>
+      <Toolbar>
+        <Typography variant="h6">
+          存摺封面
+        </Typography>
+        <PhotographIconButton onTakePhoto={handleTakePhoto4} />
+      </Toolbar>
       <Paper variant="outlined" sx={{ p: { xs: 2, sm: 3 } }}>
         <Box sx={{ width: '100%', maxWidth: 600 }}>
           <Image
-            src="/images/passbook_cover.jpg"
+            src={photo4Src}
             alt="ROC_healthcard"
             width={1755}
             height={1233}
@@ -125,8 +135,23 @@ export default function AppForm(props: {
     </Container>
   )
 
-  function handleTakePhoto(imageUri: string) {
-    console.log('handleTakePicture', imageUri)
-    setImgSrc(imageUri)
+  function handleTakePhoto1(imageUri: string) {
+    setPhoto1Src(imageUri)
+    // 上傳到後端...未實作
+  }
+
+  function handleTakePhoto2(imageUri: string) {
+    setPhoto2Src(imageUri)
+    // 上傳到後端...未實作
+  }
+
+  function handleTakePhoto3(imageUri: string) {
+    setPhoto3Src(imageUri)
+    // 上傳到後端...未實作
+  }
+
+  function handleTakePhoto4(imageUri: string) {
+    setPhoto4Src(imageUri)
+    // 上傳到後端...未實作
   }
 }
