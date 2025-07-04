@@ -2,7 +2,7 @@ import { Container, Typography, Link, Box, Button, Stack } from "@mui/material";
 //import { redirect } from 'next/navigation'
 import NextLink from "next/link";
 import { Metadata } from "next/types";
-import * as act from './actions'
+import { handleGoApply } from './actions'
 
 /**
  * html meta for SEO.
@@ -23,7 +23,7 @@ export default async function Demo201Page(props: {
     <Container>
       <Typography variant='h3' gutterBottom align='center'>開戶申請</Typography>
 
-      <form action={act.handleGoApply} >
+      <form action={handleGoApply} >
         
         <Stack alignItems='center' spacing={3} >
           <Button type='submit' size='large' color="primary">

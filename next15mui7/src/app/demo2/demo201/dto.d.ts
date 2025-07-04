@@ -1,6 +1,10 @@
-interface IDemo201Step1_FomrStae {
+interface IFormState<TValues> {
   success: boolean,
   errors: { [key: string]: string[] }
+  values: TValues
+}
+
+interface Demo201Values {
   appUuid: string,
   idNumber: string,
   name: string,
