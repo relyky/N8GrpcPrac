@@ -1,6 +1,4 @@
-interface IDemo201Step1_FomrStae {
-  success: boolean,
-  errors: { [key: string]: string[] }
+interface Demo201Values {
   appUuid: string,
   idNumber: string,
   name: string,

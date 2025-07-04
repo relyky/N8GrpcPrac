@@ -4,14 +4,16 @@ import { Button, Container, Stack, Typography, Box, Paper, TextField } from "@mu
 import NextLink from "next/link";
 import { handleCommitStep1 } from '../../actions';
 
-const initialState: IDemo201Step1_FomrStae = {
+const initialState: IFormState<Demo201Values> = {
   success: false,
   errors: {},
-  appUuid: '',
-  idNumber: 'A123456789',
-  name: '甄美麗',
-  phoneNumber: '0900123456',
-  emailAddress: 'beauty@notmail.server',
+  values: {
+    appUuid: '',
+    idNumber: 'A123456789',
+    name: '甄美麗',
+    phoneNumber: '0900123456',
+    emailAddress: 'beauty@notmail.server',
+  }
 }
 
 export default function AppForm(props: {
@@ -19,6 +21,7 @@ export default function AppForm(props: {
 }) {
   const { appUuid } = props;
   const [state, formAction, isPending] = useActionState(handleCommitStep1, initialState)
+  const { values, errors } = state
 
   return (
     <Container maxWidth="sm">
@@ -42,41 +45,41 @@ export default function AppForm(props: {
             name="idNumber"
             label="身份證字號"
             variant="outlined"
-            defaultValue={state.idNumber}
+            defaultValue={values.idNumber}
             required
             fullWidth
-            error={Boolean(state.errors.idNumber)}
-            helperText={state.errors.idNumber?.join(', ')}
+            error={Boolean(errors.idNumber)}
+            helperText={errors.idNumber?.join(', ')}
           />
           <TextField
             name="name"
             label="姓名"
             variant="outlined"
-            defaultValue={state.name}
+            defaultValue={values.name}
             required
             fullWidth
-            error={Boolean(state.errors.name)}
-            helperText={state.errors.name?.join(', ')}
+            error={Boolean(errors.name)}
+            helperText={errors.name?.join(', ')}
           />
           <TextField
             name="phoneNumber"
             label="手機號碼"
             variant="outlined"
-            defaultValue={state.phoneNumber}
+            defaultValue={values.phoneNumber}
             required
             fullWidth
-            error={Boolean(state.errors.phoneNumber)}
-            helperText={state.errors.phoneNumber?.join(', ')}
+            error={Boolean(errors.phoneNumber)}
+            helperText={errors.phoneNumber?.join(', ')}
           />
           <TextField
             name="emailAddress"
             label="電子信箱"
             variant="outlined"
-            defaultValue={state.emailAddress}
+            defaultValue={values.emailAddress}
             required
             fullWidth
-            error={Boolean(state.errors.emailAddress)}
-            helperText={state.errors.emailAddress?.join(', ')}
+            error={Boolean(errors.emailAddress)}
+            helperText={errors.emailAddress?.join(', ')}
           />
 
           <Button type='submit' size='large' variant="contained" color="primary" fullWidth
@@ -93,11 +96,11 @@ export default function AppForm(props: {
 
       </Paper>
 
-      {/* <hr />
+      <hr />
       <label>formState</label>
       <pre>
         {JSON.stringify(state, null, 2)}
-      </pre> */}
+      </pre>
     </Container>
   );
 }
