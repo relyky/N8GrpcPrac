@@ -15,7 +15,9 @@ export const metadata: Metadata = {
 /**
  * SSR page
  */
-export default async function Demo201Page() {
+export default async function Demo201Page(props: {
+  params: Promise<{ slug: string }>
+}) {
 
   return (
     <Container>
