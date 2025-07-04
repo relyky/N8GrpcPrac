@@ -96,11 +96,11 @@ export default function AppForm(props: {
 
       </Paper>
 
-      <hr />
+      {/* <hr />
       <label>formState</label>
       <pre>
         {JSON.stringify(state, null, 2)}
-      </pre>
+      </pre> */}
     </Container>
   );
 }

@@ -53,18 +53,18 @@ export async function handleCommitStep1(prevState: IFormState<Demo201Values>, fo
     }
   }
 
-  //...在資料庫完成步驟一相關工作。
+  //...讀寫資料庫等工作...
 
-  // SUCCESS 回傳新 FormState
-  return <IFormState<Demo201Values>>{
-    success: true,
-    errors: {},
-    values: parsed.data
-  }
+  //// SUCCESS 回傳新 FormState
+  //return <IFormState<Demo201Values>>{
+  //  success: true,
+  //  errors: {},
+  //  values: parsed.data
+  //}
 
   // SUCESSS 直接轉頁
-  //const { appUuid } = parsed.data
-  //redirect(`/demo2/demo201/${appUuid}/step2`)
+  const { appUuid } = parsed.data
+  redirect(`/demo2/demo201/${appUuid}/step2`)
 }
 
 export async function handleCommitStep2(info: FormData) {
