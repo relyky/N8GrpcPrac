@@ -78,7 +78,4 @@ const theme = createTheme({
   // },
 });
 
-const defaultTheme = createTheme();
-console.log('defaultTheme', defaultTheme);
-
 export default theme;
