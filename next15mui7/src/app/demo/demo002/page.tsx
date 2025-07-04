@@ -1,11 +1,19 @@
 "use client"
-import { FC, ReactNode, useState } from "react";
+import { use, FC, ReactNode, useState } from "react";
 import { Container, Tab, Tabs, Typography } from "@mui/material";
 import ThemePalette from "./ThemePalette";
 import ThemeTypography from "./ThemeTypography";
 import UiLayoutPractice from "./UiLayoutPractice";
 
-export default function Demo002Page() {
+/**
+ * CSR page:
+ */
+export default function Demo002Page(props: {
+  params: Promise<{ slug: string }>,
+  searchParams: URLSearchParams
+}) {
+  const { slug } = use(props.params); // 取 uri routing 動態參數
+
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
@@ -23,7 +31,7 @@ export default function Demo002Page() {
       </TabPanel>
 
       <TabPanel index={1} value={tabIndex}>
-        <ThemeTypography />        
+        <ThemeTypography />
       </TabPanel>
 
       <TabPanel index={2} value={tabIndex}>
@@ -34,10 +42,10 @@ export default function Demo002Page() {
 }
 
 //-----------------------------------------------------------------------------
-const TabPanel: FC<{ 
-  index: number, 
-  value: number, 
-  children: ReactNode 
+const TabPanel: FC<{
+  index: number,
+  value: number,
+  children: ReactNode
 }> = (props) => {
   return (
     <div role="tabpanel" hidden={props.value !== props.index}>

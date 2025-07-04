@@ -1,7 +1,24 @@
 import { Alert, Box, Button, Container, Typography } from "@mui/material";
+import { Metadata } from "next/types";
 
-export default async function Demo001Page() {
+/**
+ * html meta for SEO.
+ */
+export const metadata: Metadata = {
+  title: '開戶申請展示 | 亞洲志遠',
+  description: '開戶申請的展示頁面。',
+}
 
+/**
+ * SSR page
+ * next.js 天生為 sessionless 設計。
+ */
+export default async function Demo001Page(
+  props: {
+    params: Promise<{ }>,
+    searchParams: URLSearchParams
+  }
+) {
 
   return (
     <Container>
