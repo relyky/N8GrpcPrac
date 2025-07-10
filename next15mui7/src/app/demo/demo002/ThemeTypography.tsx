@@ -44,10 +44,10 @@ export default function ThemeTypography() {
       </Paper>
 
       <Grid container spacing={2} sx={{ mb: 2 }}>
-        <Grid size={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TypoHant />
         </Grid>
-        <Grid size={6}>
+        <Grid size={{ xs: 12, sm: 6 }}>
           <TypoEng />
         </Grid>
       </Grid>

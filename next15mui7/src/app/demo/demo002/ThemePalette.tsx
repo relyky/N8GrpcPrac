@@ -1,4 +1,4 @@
-import { Box, Button, capitalize, Paper, Stack, Typography, useTheme, Link as MuiLink } from "@mui/material";
+import { Box, Button, capitalize, Paper, Stack, Typography, useTheme, Link as MuiLink, Divider } from "@mui/material";
 import { FC } from "react";
 
 export default function ThemePalette() {
@@ -55,7 +55,11 @@ export default function ThemePalette() {
         </Stack>
       </Paper>
 
-      <pre>{JSON.stringify(palette, null, 2)}</pre>
+      <Divider sx={{ my: 3 }} />
+      <Typography variant="subtitle1">for debug</Typography>
+      <Box component="pre" sx={{ whiteSpace: 'pre-wrap', p: 2 }} >
+        {JSON.stringify(palette, null, 2)}
+      </Box>
     </div>
 
   )
